@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+async function getData(url) {
+    try {
+        const response = await fetch(url)
+        if(!response.ok) {
+            throw new Error('HTTP error!')
+        }
+        const  data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching data:")
+    }
+}
+
+    const url = "https://datausa.io/api/data?drilldowns=Nation&measures=Population"
+
+    getData(url)
+    .then(data => {
+        console.log("DATA:", data)
+    })
+</script>
