@@ -6,7 +6,18 @@
     <title>Assignment 2</title>
 </head>
 <body>
-    
+    <table id="data-table" border="1">
+        <caption><strong>US Population</caption>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Population</th>
+            </tr>
+            <tbody>
+
+            </tbody>
+        </thead>
+    </table>
 </body>
 </html>
 
@@ -28,6 +39,23 @@ async function getData(url) {
 
     getData(url)
     .then(data => {
-        console.log("DATA:", data)
+        const tableBody =
+        document.querySelector("#data-table tbody");
+
+        data.data.sort((a, b) => a.Year - b.Year)
+            data.data.forEach(item => {
+                const row = document.createElement("tr");
+                
+                const year = document.createElement("td");
+                const population = document.createElement("td");
+                
+                year.textContent = item.Year;
+                population.textContent = item.Population.toLocaleString();
+
+                row.appendChild(year);
+                row.appendChild(population);
+                tableBody.appendChild(row);
+                
+            });
     })
 </script>
